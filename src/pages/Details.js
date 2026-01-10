@@ -36,7 +36,7 @@ function Details() {
   };
 
   return (
-    <main>
+    <main id="main-content" tabIndex={-1}>
       <Container maxWidth="md" sx={{ mt: 4, mb: 6 }}>
         {/* Page Heading */}
         <Typography component="h1" variant="h4" gutterBottom>

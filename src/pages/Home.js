@@ -58,7 +58,7 @@ function Home() {
   const race = RACE_DATA[raceType];
 
   return (
-    <main>
+    <main id="main-content" tabIndex={-1}>
       <Container maxWidth="md">
         {/* Page Header */}
         <Box sx={{ textAlign: "center", mt: 4 }}>
