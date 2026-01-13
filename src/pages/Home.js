@@ -63,7 +63,7 @@ function Home() {
         <Box sx={{ mt: 4 }}>
           <img
             src={marathonImage}
-            alt="Runners participating in the Madrid Marathon on city streets"
+            alt="Runners participating in the Madrid Marathon on Madrid city streets"
             style={{ width: "100%", borderRadius: "12px" }}
           />
         </Box>
@@ -184,8 +184,12 @@ function Home() {
           <ToggleButtonGroup
             value={raceType}
             exclusive
-            onChange={(e, v) => v && setRaceType(v)}
             aria-label="Select race distance"
+            onChange={(e, v) => {
+              if (v !== null) {
+                setRaceType(v);
+              }
+            }}
           >
             <ToggleButton value="marathon">Marathon</ToggleButton>
             <ToggleButton value="half">Half Marathon</ToggleButton>
@@ -277,15 +281,40 @@ function Home() {
 
           <Grid container spacing={3}>
             {[
-              { title: "Event Details", img: detailsImg, href: "/details" },
-              { title: "FAQ & Tips", img: faqImg, href: "/faq" },
-              { title: "Previous Events", img: previousEventsImg, href: "/previous-events" },
-              { title: "Register", img: registerImg, href: "/register" }
+              {
+                title: "Event Details",
+                img: detailsImg,
+                href: "/details",
+                alt: "Runners passing Madrid landmarks during the marathon"
+              },
+              {
+                title: "FAQ & Tips",
+                img: faqImg,
+                href: "/faq",
+                alt: "Smiling marathon participants celebrating during the race"
+              },
+              {
+                title: "Previous Events",
+                img: previousEventsImg,
+                href: "/previous-events",
+                alt: "Map showing the Madrid Marathon course route"
+              },
+              {
+                title: "Register",
+                img: registerImg,
+                href: "/register",
+                alt: "Volunteers and participants gathering at a marathon event"
+              }
             ].map((item) => (
               <Grid item xs={12} sm={6} md={3} key={item.title}>
                 <Card>
                   <CardActionArea component={Link} to={item.href}>
-                    <CardMedia component="img" height="180" image={item.img} alt={item.title} />
+                    <CardMedia
+                      component="img"
+                      height="180"
+                      image={item.img}
+                      alt={item.alt}
+                    />
                     <CardContent>
                       <Typography variant="h6">{item.title}</Typography>
                     </CardContent>
@@ -297,13 +326,23 @@ function Home() {
         </Box>
 
         {/* ================= FOOTER ================= */}
-        <Box component="footer" sx={{ mt: 8, py: 4, borderTop: "1px solid", borderColor: "divider", textAlign: "center" }}>
+        <Box
+          component="footer"
+          sx={{
+            mt: 8,
+            py: 4,
+            borderTop: "1px solid",
+            borderColor: "divider",
+            textAlign: "center"
+          }}
+        >
           <Typography variant="body2">
             © 2026 Madrid Marathon. All rights reserved.
           </Typography>
           <Typography variant="body2">
             <Link to="/">Home</Link> · <Link to="/details">Details</Link> ·{" "}
-            <Link to="/faq">FAQ</Link> · <Link to="/previous-events">Previous Events</Link> ·{" "}
+            <Link to="/faq">FAQ</Link> ·{" "}
+            <Link to="/previous-events">Previous Events</Link> ·{" "}
             <Link to="/register">Register</Link>
           </Typography>
         </Box>
