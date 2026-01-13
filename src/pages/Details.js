@@ -1,11 +1,10 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link as RouterLink } from "react-router-dom";
 import {
   Container,
   Typography,
   Box,
   Button,
-  Link,
   Table,
   TableBody,
   TableCell,
@@ -17,7 +16,8 @@ import {
   FormControlLabel,
   Divider,
   Snackbar,
-  Alert
+  Alert,
+  Link
 } from "@mui/material";
 
 import LocationOnIcon from "@mui/icons-material/LocationOn";
@@ -25,6 +25,8 @@ import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import DirectionsRunIcon from "@mui/icons-material/DirectionsRun";
 import HealthAndSafetyIcon from "@mui/icons-material/HealthAndSafety";
 import BackpackIcon from "@mui/icons-material/Backpack";
+
+import metropolisImage from "../assets/metropolis-building.jpg";
 
 function Details() {
   const [checklist, setChecklist] = useState({
@@ -90,6 +92,37 @@ function Details() {
           </Box>
         </Box>
 
+        <Box
+          sx={{
+            mt: 4,
+            display: "flex",
+            gap: 2,
+            alignItems: "center",
+            flexDirection: "column",
+            textAlign: "center"
+          }}
+        >
+          <Box sx={{ width: "100%", maxWidth: 300 }}>
+              <img
+              src={metropolisImage}
+              alt="The Metropolis building in Madrid where the marathon registration point will be set up. The building stands in the corner of the street, its predominant color is white and includes a state of a Phoenix on the top."
+              style={{ width: "100%", borderRadius: "12px", display: "block" }}
+              />
+            </Box>
+
+          <Typography>
+            The registration point will be set up in front of the{" "}
+            <Link
+              href="https://maps.app.goo.gl/4VyAWRrwjnB1Knuf6"
+              target="_blank"
+              rel="noopener"
+            >
+              Metropolis Building
+            </Link>{" "}
+            on C. Alcalá, 39.
+          </Typography>
+        </Box>
+
         <Divider sx={{ my: 5 }} />
 
         {/* Race Categories Table */}
@@ -113,26 +146,26 @@ function Details() {
               <TableBody>
                 <TableRow>
                   <TableCell component="th" scope="row">Marathon</TableCell>
-                  <TableCell>42.195 km</TableCell>
-                  <TableCell>08:00 AM</TableCell>
-                  <TableCell>6 hours</TableCell>
-                  <TableCell>Advanced</TableCell>
+                  <TableCell component="td">42.195 km</TableCell>
+                  <TableCell component="td">08:00 AM</TableCell>
+                  <TableCell component="td">6 hours</TableCell>
+                  <TableCell component="td">Advanced</TableCell>
                 </TableRow>
 
                 <TableRow>
                   <TableCell component="th" scope="row">Half Marathon</TableCell>
-                  <TableCell>21.1 km</TableCell>
-                  <TableCell>09:00 AM</TableCell>
-                  <TableCell>3 hours</TableCell>
-                  <TableCell>Intermediate</TableCell>
+                  <TableCell component="td">21.1 km</TableCell>
+                  <TableCell component="td">09:00 AM</TableCell>
+                  <TableCell component="td">3 hours</TableCell>
+                  <TableCell component="td">Intermediate</TableCell>
                 </TableRow>
 
                 <TableRow>
                   <TableCell component="th" scope="row">10K Run</TableCell>
-                  <TableCell>10 km</TableCell>
-                  <TableCell>10:00 AM</TableCell>
-                  <TableCell>90 minutes</TableCell>
-                  <TableCell>All levels</TableCell>
+                  <TableCell component="td">10 km</TableCell>
+                  <TableCell component="td">10:00 AM</TableCell>
+                  <TableCell component="td">90 minutes</TableCell>
+                  <TableCell component="td">All levels</TableCell>
                 </TableRow>
               </TableBody>
             </Table>
@@ -217,6 +250,10 @@ function Details() {
           </Box>
         </Box>
 
+        <Alert severity="info" role="status" sx={{ mt: 5 }}>
+          Registration closes on January 31st, 2026.
+        </Alert>
+
         {/* Call to Action */}
         <Box sx={{ mt: 5, textAlign: "center" }}>
           <Button
@@ -230,7 +267,7 @@ function Details() {
         </Box>
         
         {/* SNACKBAR */}
-        <Snackbar open={snackbarOpen} autoHideDuration={5000}>
+        <Snackbar open={snackbarOpen} autoHideDuration={3000}>
           <Alert severity="success" role="alert">Redirecting to registration page…</Alert>
         </Snackbar>
 
@@ -240,9 +277,9 @@ function Details() {
             © 2026 Madrid Marathon. All rights reserved.
           </Typography>
           <Typography variant="body2">
-            <Link to="/">Home</Link> · <Link to="/details">Details</Link> ·{" "}
-            <Link to="/faq">FAQ</Link> · <Link to="/previous-events">Previous Events</Link> ·{" "}
-            <Link to="/register">Register</Link>
+            <RouterLink to="/">Home</RouterLink> · <RouterLink to="/details">Details</RouterLink> ·{" "}
+            <RouterLink to="/faq">FAQ</RouterLink> · <RouterLink to="/previous-events">Previous Events</RouterLink> ·{" "}
+            <RouterLink to="/register">Register</RouterLink>
           </Typography>
         </Box>
 

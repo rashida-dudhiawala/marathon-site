@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate, Link } from "react-router-dom";
 import countries from "world-countries";
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import { 
@@ -23,7 +24,6 @@ import {
   Chip,
   Button,
   Divider,
-  Link,
   Alert
 } from "@mui/material";
 
@@ -56,8 +56,8 @@ function Register() {
             Registration Form
           </Typography>
           <Chip
-            label="Registration open until January 31, 2026"
-            aria-label="Registration open until January 31, 2026"
+            label="Registration open until January 31st, 2026"
+            aria-label="Registration open until January 31st, 2026"
             color="success"
           />
          </Box>
@@ -224,12 +224,12 @@ function Register() {
           <Divider sx={{ my: 5 }} />
 
           <Box sx={{ display: "flex", alignItems: "center", mt: 2 }}>
-            <Typography component="h2" variant="h6" sx={{ mt: 2 }}>
+            <Typography component="h2" variant="h6">
               Voluntary Donation
             </Typography>
             <Tooltip title="Donate your chosen amount to this year's selected charity.">
               <IconButton aria-label="More information about donating">
-                <HelpOutlineIcon sx={{ mt: 2 }} />
+                <HelpOutlineIcon />
                 </IconButton>
               </Tooltip>
           </Box>
