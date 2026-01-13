@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   Container,
   Typography,
@@ -13,7 +14,10 @@ import {
   TableRow,
   Paper,
   Checkbox,
-  FormControlLabel
+  FormControlLabel,
+  Divider,
+  Snackbar,
+  Alert
 } from "@mui/material";
 
 import LocationOnIcon from "@mui/icons-material/LocationOn";
@@ -35,9 +39,18 @@ function Details() {
     setChecklist((prev) => ({ ...prev, [item]: !prev[item] }));
   };
 
+  const navigate = useNavigate();
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
+
+  const handleRegisterClick = () => {
+    setSnackbarOpen(true);
+    setTimeout(() => navigate("/register"), 1200);
+  };
+
   return (
     <main id="main-content" tabIndex={-1}>
       <Container maxWidth="md" sx={{ mt: 4, mb: 6 }}>
+        
         {/* Page Heading */}
         <Typography component="h1" variant="h4" gutterBottom>
           Event Details
@@ -45,7 +58,7 @@ function Details() {
 
         {/* Overview Section */}
         <Box sx={{ mt: 2 }}>
-          <Typography component="p">
+          <Typography paragraph color="text.secondary">
             This page provides detailed information about the Madrid Marathon
             2026, including race categories, logistics, and preparation
             recommendations for participants.
@@ -54,9 +67,9 @@ function Details() {
           <Box
             sx={{ display: "flex", gap: 3, flexWrap: "wrap", mt: 2 }}
             aria-label="Event overview information"
-          >
-            <Typography component="p">
-              <LocationOnIcon aria-hidden="true" />{" "}
+          > 
+            <Box sx={{ display: "flex", gap: 1, alignItems: "center"}}>
+              <LocationOnIcon aria-label="location" />{" "}
               <Link
                 href="https://www.google.com/maps/search/madrid+marathon+route"
                 target="_blank"
@@ -64,22 +77,24 @@ function Details() {
               >
                 View marathon route in Madrid, Spain
               </Link>
-            </Typography>
+            </Box>
 
-            <Typography component="p">
-              <CalendarMonthIcon aria-hidden="true" /> February 22nd, 2026
-            </Typography>
+            <Box sx={{ display: "flex", gap: 1, alignItems: "center"}}>
+              <CalendarMonthIcon aria-label="date" /> February 22nd, 2026
+            </Box>
 
-            <Typography component="p">
-              <DirectionsRunIcon aria-hidden="true" /> Marathon, Half Marathon,
+            <Box sx={{ display: "flex", gap: 1, alignItems: "center"}}>
+              <DirectionsRunIcon aria-label="categories" /> Marathon, Half Marathon,
               and 10K Run
-            </Typography>
+            </Box>
           </Box>
         </Box>
 
+        <Divider sx={{ my: 5 }} />
+
         {/* Race Categories Table */}
         <Box sx={{ mt: 4 }}>
-          <Typography component="h2" variant="h5" gutterBottom>
+          <Typography id="race-categories-title" component="h2" variant="h5" gutterBottom>
             Race Categories Overview
           </Typography>
 
@@ -87,29 +102,17 @@ function Details() {
             <Table aria-label="Race categories comparison table">
               <TableHead>
                 <TableRow>
-                  <TableCell component="th" scope="col">
-                    Race category
-                  </TableCell>
-                  <TableCell component="th" scope="col">
-                    Distance
-                  </TableCell>
-                  <TableCell component="th" scope="col">
-                    Start time
-                  </TableCell>
-                  <TableCell component="th" scope="col">
-                    Cut-off time
-                  </TableCell>
-                  <TableCell component="th" scope="col">
-                    Recommended experience level
-                  </TableCell>
+                  <TableCell component="th" scope="col" sx={{ fontWeight: 'bold' }}>Race category</TableCell>
+                  <TableCell component="th" scope="col" sx={{ fontWeight: 'bold' }}>Distance</TableCell>
+                  <TableCell component="th" scope="col" sx={{ fontWeight: 'bold' }}>Start time</TableCell>
+                  <TableCell component="th" scope="col" sx={{ fontWeight: 'bold' }}>Cut-off time</TableCell>
+                  <TableCell component="th" scope="col" sx={{ fontWeight: 'bold' }}>Recommended experience level</TableCell>
                 </TableRow>
               </TableHead>
 
               <TableBody>
                 <TableRow>
-                  <TableCell component="th" scope="row">
-                    Marathon
-                  </TableCell>
+                  <TableCell component="th" scope="row">Marathon</TableCell>
                   <TableCell>42.195 km</TableCell>
                   <TableCell>08:00 AM</TableCell>
                   <TableCell>6 hours</TableCell>
@@ -117,9 +120,7 @@ function Details() {
                 </TableRow>
 
                 <TableRow>
-                  <TableCell component="th" scope="row">
-                    Half Marathon
-                  </TableCell>
+                  <TableCell component="th" scope="row">Half Marathon</TableCell>
                   <TableCell>21.1 km</TableCell>
                   <TableCell>09:00 AM</TableCell>
                   <TableCell>3 hours</TableCell>
@@ -127,9 +128,7 @@ function Details() {
                 </TableRow>
 
                 <TableRow>
-                  <TableCell component="th" scope="row">
-                    10K Run
-                  </TableCell>
+                  <TableCell component="th" scope="row">10K Run</TableCell>
                   <TableCell>10 km</TableCell>
                   <TableCell>10:00 AM</TableCell>
                   <TableCell>90 minutes</TableCell>
@@ -140,18 +139,20 @@ function Details() {
           </TableContainer>
         </Box>
 
+        <Divider sx={{ my: 5 }} />
+
         {/* Preparation Checklist */}
         <Box sx={{ mt: 4 }}>
-          <Typography component="h2" variant="h5" gutterBottom>
+          <Typography id="checklist-title" component="h2" variant="h5" gutterBottom>
             Pre-Race Checklist
           </Typography>
 
-          <Typography component="p">
+          <Typography paragraph color="text.secondary">
             Use the checklist below to ensure you are fully prepared before race
             day.
           </Typography>
 
-          <Box role="group" aria-label="Pre-race preparation checklist">
+          <Box role="group" aria-label="Pre-race preparation checklist" sx={{ mt: 2, display: "flex", flexDirection: "column" }}>
             <FormControlLabel
               control={
                 <Checkbox
@@ -204,15 +205,15 @@ function Details() {
           </Box>
 
           <Box sx={{ mt: 2 }}>
-            <Typography component="p">
+            <Box sx={{ display: "flex", gap: 1, alignItems: "center"}}>
               <HealthAndSafetyIcon aria-hidden="true" /> Medical services and
               first-aid stations are available throughout the course.
-            </Typography>
+            </Box>
 
-            <Typography component="p">
+            <Box sx={{ display: "flex", gap: 1, alignItems: "center"}}>
               <BackpackIcon aria-hidden="true" /> Secure baggage storage is
               provided near the start and finish areas.
-            </Typography>
+            </Box>
           </Box>
         </Box>
 
@@ -221,12 +222,30 @@ function Details() {
           <Button
             variant="contained"
             size="large"
-            href="/register"
             aria-label="Register for the Madrid Marathon 2026"
+            onClick={handleRegisterClick}
           >
-            Register for the Event
+            Register now
           </Button>
         </Box>
+        
+        {/* SNACKBAR */}
+        <Snackbar open={snackbarOpen} autoHideDuration={5000}>
+          <Alert severity="success" role="alert">Redirecting to registration page…</Alert>
+        </Snackbar>
+
+        {/* FOOTER */}
+        <Box component="footer" sx={{ mt: 8, py: 4, borderTop: "1px solid", borderColor: "divider", textAlign: "center" }}>
+          <Typography variant="body2">
+            © 2026 Madrid Marathon. All rights reserved.
+          </Typography>
+          <Typography variant="body2">
+            <Link to="/">Home</Link> · <Link to="/details">Details</Link> ·{" "}
+            <Link to="/faq">FAQ</Link> · <Link to="/previous-events">Previous Events</Link> ·{" "}
+            <Link to="/register">Register</Link>
+          </Typography>
+        </Box>
+
       </Container>
     </main>
   );

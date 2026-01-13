@@ -192,9 +192,8 @@ function Register() {
             <Typography id="distance-label" sx={{ mt: 2 }}>Distance<span aria-hidden="true" style={{ color: "red" }}>*</span></Typography>
             <RadioGroup aria-label="distance selection" disabled={submitted}>
               <FormControlLabel value="marathon" control={<Radio />} label="Marathon (42.195 kilometres)"/>
-              <FormControlLabel value="half-marathon" control={<Radio />} label="Half-marathon (21.0975 kilometres)" />
+              <FormControlLabel value="half-marathon" control={<Radio />} label="Half-marathon (21.1 kilometres)" />
               <FormControlLabel value="10k" control={<Radio />} label="10 kilometers" />
-              <FormControlLabel value="5k" control={<Radio />} label="5 kilometers" />
             </RadioGroup>
           </FormControl>
 
