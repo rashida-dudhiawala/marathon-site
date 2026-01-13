@@ -72,8 +72,6 @@ function Register() {
           </Alert>
         )}
 
-        <Divider sx={{ my: 5 }} />
-
         {/* Form Fields */}
         <form onSubmit={(e) => {
           e.preventDefault();
