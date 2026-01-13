@@ -26,7 +26,7 @@ function Navbar() {
         Skip to main content
       </Link>
 
-      <AppBar position="static">
+      <AppBar position="sticky">
         <Toolbar>
           {/* Logo on the LEFT */}
           <Box sx={{ display: "flex", alignItems: "center" }}>

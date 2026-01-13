@@ -79,7 +79,7 @@ function PreviousEvents() {
         
         {/* Page Heading */}
         <Typography component="h1" variant="h4" gutterBottom>
-          Past Marathon Events
+          Previous Marathon Events
         </Typography>
 
         <Typography paragraph color="text.secondary">
@@ -183,8 +183,8 @@ function PreviousEvents() {
 
                 <TableRow>
                   <TableCell component="th" scope="row">2022</TableCell>
-                  <TableCell component="td">2:08:18</TableCell>
                   <TableCell component="td">Siranesh Yirga</TableCell>
+                  <TableCell component="td">2:08:18</TableCell>
                   <TableCell component="td">Female</TableCell>
                 </TableRow>                
               </TableBody>
